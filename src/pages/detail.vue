@@ -2,8 +2,11 @@
 </script>
 
 <template>
-    hhhhh
+    <div class="cell">
+        hhhhh
+    </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
 </style>
