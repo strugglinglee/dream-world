@@ -2,18 +2,20 @@ import Home from '../pages/home.vue'
 import Detail from '../pages/detail.vue'
 import {
     createWebHistory,
-    createRouter
+    createRouter,
+    RouteRecordRaw
 } from 'vue-router'
 
-const routes = [{
+const routes: Array < RouteRecordRaw > = [{
     path: '/',
     component: Home
-},{
-    path:'/detail',
+}, {
+    path: '/detail',
     component: Detail
 }]
 const router = createRouter({
     history: createWebHistory(),
     routes,
 })
+
 export default router

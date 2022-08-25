@@ -41,11 +41,21 @@ export default defineConfig({
 
 
 #### eslint 搭配 typescript-eslint
-
+https://typescript-eslint.io/docs/
 
 使用 ESLint 来进行代码检查，它通过插件化的特性极大的丰富了适用范围，搭配 typescript-eslint 之后，可以用来检查 TypeScript 代码
 
 ```shell
-yarn add eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --dev
+npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
 ```
 
+创建.eslintrc.cjs配置
+
+```cjs
+module.exports = {
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  root: true,
+};
+```
