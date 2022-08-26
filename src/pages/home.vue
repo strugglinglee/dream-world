@@ -2,6 +2,14 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from "../components/HelloWorld.vue"
+
+import { useRouter } from "vue-router"
+
+const router = useRouter()
+
+const goDetail = () => {
+    router.push("/detail")
+}
 </script>
 
 <template>
@@ -11,7 +19,7 @@ import HelloWorld from "../components/HelloWorld.vue"
         </a>
     </div>
     <HelloWorld msg="Vite + Vue" />
-    <div class="cell">hhhhh2</div>
+    <div class="cell" @click="goDetail">hhhhh2</div>
 </template>
 
 <style lang="scss" scoped>
