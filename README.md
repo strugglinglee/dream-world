@@ -10,7 +10,7 @@ Vue 3 + TypeScript + Vite + Sass + Vue Router 4
 - [v]eslint/tslint
 - [v]prettier
 - [v]stylelint
-- []husky+lint-staged+comm
+- [v]husky+lint-staged+commitlint
 - []babel
 - []CI/CD
 - []common style
@@ -113,3 +113,9 @@ stylelint-config-standard 是stylelint的推荐配置，stylelint-order是用来
 yarn add -D husky lint-staged
 yarn add -D @commitlint/config-conventional @commitlint/cli
 ```
+
+husky 管理git hooks
+
+lint-staged 搭配husky配置自动代码检测
+
+commitlint 提交msg检测
