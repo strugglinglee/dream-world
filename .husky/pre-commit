@@ -1,10 +1,10 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+# . "$(dirname "$0")/_/husky.sh"
 
-# 优化控制台循环打印
-exec >/dev/tty 2>&1
+# # 优化控制台循环打印
+# exec >/dev/tty 2>&1
 
-# 检查
-echo "---lint检查开始---"
-npx lint-staged --allow-empty
-echo "---lint检查结束---"
+# # 检查
+# echo "---lint检查开始---"
+# npx lint-staged --allow-empty
+# echo "---lint检查结束---"
