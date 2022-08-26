@@ -3,5 +3,5 @@
 
 # 检查
 echo "---lint检查开始---"
-npx lint-staged
+npx lint-staged --allow-empty
 echo "---lint检查结束---"
