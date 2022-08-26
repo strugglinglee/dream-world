@@ -7,9 +7,8 @@
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build",
         "preview": "vite preview",
-        "eslint": "npx eslint . --fix",
-        "lint": "stylelint src/**/*.scss --fix",
-        "style": "stylelint \"src/**/*.(vue|scss|css)\" --fix",
+        "lint:style": "stylelint \"src/**/*.(vue|scss|css)\" --fix",
+        "lint:eslint": "eslint --fix",
         "prepare": "husky install"
     },
     "dependencies": {

@@ -11,19 +11,20 @@ import HelloWorld from "../components/HelloWorld.vue"
         </a>
     </div>
     <HelloWorld msg="Vite + Vue" />
-    <div class="cell">hhhhh</div>
+    <div class="cell">hhhhh2</div>
 </template>
 
 <style lang="scss" scoped>
 .logo {
-    height: 6em;
     padding: 1.5em;
+    height: 6em;
     will-change: filter;
 
     &:hover {
         filter: drop-shadow(0 0 2em #646cffaa);
     }
 }
+
 .logo.vue:hover {
     filter: drop-shadow(0 0 2em #42b883aa);
 }

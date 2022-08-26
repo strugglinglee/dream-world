@@ -1,5 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
+exec >/dev/tty 2>&1
 
 # 检查
 echo "---lint检查开始---"
