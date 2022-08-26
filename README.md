@@ -12,7 +12,7 @@ Vue 3 + TypeScript + Vite + Sass + Vue Router 4
 - [v]stylelint
 - [v]husky+lint-staged+commitlint
 - []babel
-- []CI/CD
+- [v]CI/CD
 - []common style
 - []common util
 - []common components
@@ -119,3 +119,10 @@ husky 管理git hooks
 lint-staged 搭配husky配置自动代码检测
 
 commitlint 提交msg检测
+
+
+### CI/CD
+
+vercel一键部署
+
+由于使用History模式刷新404 添加了vercel.json匹配
