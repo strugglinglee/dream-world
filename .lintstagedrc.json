@@ -1,8 +1,7 @@
 {
 "*.{js,ts,tsx,jsx,vue}": [
     "eslint --fix",
-    "prettier --write",
-    "git add"
+    "prettier --write"
   ],
   "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
     "prettier --write--parser json"
