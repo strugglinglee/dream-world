@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from "../components/HelloWorld.vue"
 
 import { useRouter } from "vue-router"
 
@@ -12,15 +11,7 @@ const goDetail = () => {
 }
 </script>
 
-<template>
-    <div>
-        <a href="https://vitejs.dev" target="_blank">
-            <img src="/vite.svg" class="logo" alt="Vite logo" />
-        </a>
-    </div>
-    <HelloWorld msg="Vite + Vue" />
-    <div class="cell" @click="goDetail">hhhhh2</div>
-</template>
+<template>111</template>
 
 <style lang="scss" scoped>
 .logo {
