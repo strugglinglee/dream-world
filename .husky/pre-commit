@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 检查
+echo "---lint检查开始---"
+npx lint-staged
+echo "---lint检查结束---"
