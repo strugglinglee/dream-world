@@ -1,5 +1,5 @@
 import type { MenuOption } from "naive-ui"
-import { LogoWechat as WechatIcon } from "@vicons/ionicons5"
+import { LogoWechat as WechatIcon, GameController } from "@vicons/ionicons5"
 import {
     GithubAlt as GithubIcon,
     AngleDoubleDown as JuejinIcon,
@@ -20,6 +20,7 @@ const getLinkLabel = (text: string, link: string) => {
             "a",
             {
                 href: link,
+                target: "_blank",
             },
             { default: () => text }
         )
@@ -48,4 +49,16 @@ const myOption: MenuOption = {
     ],
 }
 
-export const menuOptions: MenuOption[] = [{ ...myOption }]
+const likeOption: MenuOption = {
+    label: "我想做什么",
+    key: "TODO",
+    icon: renderIcon(GameController),
+    children: [
+        {
+            label: "可视化",
+            key: "visual",
+        },
+    ],
+}
+
+export const menuOptions: MenuOption[] = [{ ...likeOption }, { ...myOption }]
