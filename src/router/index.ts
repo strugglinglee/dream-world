@@ -4,11 +4,11 @@ import { createWebHistory, createRouter, RouteRecordRaw } from "vue-router"
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: "/",
+        path: "/dream-world",
         component: Home,
     },
     {
-        path: "/detail",
+        path: "/dream-world/detail",
         component: Detail,
     },
 ]
