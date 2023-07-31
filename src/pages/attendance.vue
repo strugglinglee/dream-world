@@ -106,6 +106,7 @@ onMounted(() => {
 
 const timeChange = (e: number | null) => {
     e && localStorage.setItem("localStartTime", String(e))
+    computeRes()
 }
 const computeRes = () => {
     if (!model.value.startTime || !model.value.workHour) return
