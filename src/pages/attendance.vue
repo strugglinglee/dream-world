@@ -5,7 +5,7 @@
                 v-model:value="model.startTime"
                 style="width: 500px"
                 :default-value="model.startTime"
-                @change="computeRes"
+                @change="timeChange"
             />
         </n-form-item>
         <n-form-item path="workHour" label="上班时长">
@@ -67,9 +67,11 @@ interface ModelType {
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 
-console.log(dayjs().format("YYYY-MM-DD") + " 09:30:00")
+const localStartTime: string | null = localStorage.getItem("localStartTime")
 const model = ref<ModelType>({
-    startTime: dayjs(dayjs().format("YYYY-MM-DD") + " 09:30:00").valueOf(),
+    startTime: localStartTime
+        ? Number(localStartTime)
+        : dayjs(dayjs().format("YYYY-MM-DD") + " 09:30:00").valueOf(),
     workHour: 9,
     leaveTime: null,
     waitTime: null,
@@ -101,6 +103,10 @@ const rules: FormRules = {
 onMounted(() => {
     computeRes()
 })
+
+const timeChange = (e: number | null) => {
+    e && localStorage.setItem("localStartTime", String(e))
+}
 const computeRes = () => {
     if (!model.value.startTime || !model.value.workHour) return
     let { startTime, workHour } = model.value
