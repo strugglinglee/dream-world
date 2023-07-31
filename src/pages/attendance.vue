@@ -1,11 +1,10 @@
 <template>
     <n-form ref="formRef" :model="model" :rules="rules" label-placement="left" label-width="120">
         <n-form-item path="startTime" label="今日打卡时间">
-            <n-date-picker
+            <n-time-picker
                 v-model:value="model.startTime"
                 style="width: 500px"
-                type="datetime"
-                clearable
+                :default-value="model.startTime"
                 @change="computeRes"
             />
         </n-form-item>
@@ -17,7 +16,7 @@
                 :min="0"
                 :max="12"
                 :precision="2"
-                @change="computeRes"
+                @update:value="computeRes"
             />
         </n-form-item>
         <n-form-item v-if="model.waitTime" label="距离下班还有">
@@ -54,7 +53,7 @@ import {
     // FormItemRule,
     useMessage,
     FormRules,
-    NDatePicker,
+    NTimePicker,
     NInputNumber,
     NCountdown,
 } from "naive-ui"
@@ -115,13 +114,14 @@ const computeRes = () => {
     // 计算结束时间的 dayjs 对象
     const endDate = startDate.add(workMilliseconds, "millisecond")
 
-    // 格式化结束时间为 YYYY/MM/DD HH:mm:ss
-    const endFormatted = endDate.format("YYYY-MM-DD HH:mm:ss")
+    // 格式化结束时间为 HH:mm:ss
+    const endFormatted = endDate.format("HH:mm:ss")
 
     // 计算剩余的毫秒数
     const remainingMilliseconds = endDate.diff(dayjs(), "millisecond")
 
     model.value.waitTime = remainingMilliseconds
     model.value.leaveTime = endFormatted
+    console.log(model.value)
 }
 </script>
