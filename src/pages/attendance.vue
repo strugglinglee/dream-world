@@ -25,6 +25,9 @@
         <n-form-item v-if="model.leaveTime" label="今日预计下班时间">
             {{ model.leaveTime }}
         </n-form-item>
+        <n-form-item v-if="model.validTime" label="今日出勤时间">
+            {{ model.validTime }}
+        </n-form-item>
         <!-- <n-countdown
             ref="countdown"
             :duration="countdownInfo.duration"
@@ -60,6 +63,7 @@ import {
 
 interface ModelType {
     startTime: number | null
+    validTime: number | null
     workHour: number
     leaveTime: string | null
     waitTime: number | null
@@ -75,6 +79,7 @@ const model = ref<ModelType>({
     workHour: 9,
     leaveTime: null,
     waitTime: null,
+    validTime: null,
 })
 const rules: FormRules = {
     startTime: [
@@ -126,9 +131,13 @@ const computeRes = () => {
 
     // 计算剩余的毫秒数
     const remainingMilliseconds = endDate.diff(dayjs(), "millisecond")
+    // 计算有效上班时长
+    const validTime: any = (dayjs().diff(startDate, "millisecond") / (1000 * 60 * 60)).toFixed(2)
 
     model.value.waitTime = remainingMilliseconds
     model.value.leaveTime = endFormatted
-    console.log(model.value)
+    model.value.validTime = validTime > 1.5 ? validTime - 1.5 : validTime
+
+    console.log(validTime)
 }
 </script>
