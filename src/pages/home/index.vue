@@ -10,7 +10,6 @@ import { menuOptions, defaultExpandedKeys } from "./data"
         <!-- <Test></Test> -->
         <n-avatar round :size="88" :src="Avatar" />
         <n-menu :options="menuOptions" :default-expanded-keys="defaultExpandedKeys" accordion />
-        <n-button @click="$router.push('/attendance')">attendance</n-button>
     </div>
 </template>
 
