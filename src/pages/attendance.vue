@@ -16,7 +16,7 @@
                 :min="0"
                 :max="12"
                 :precision="2"
-                @update:value="computeRes"
+                @update:value="workHourChange"
             />
         </n-form-item>
         <n-form-item v-if="model.waitTime" label="距离下班还有">
@@ -74,22 +74,6 @@ const rules: FormRules = {
             message: "请选择时间",
         },
     ],
-    // password: [
-    //     {
-    //         required: true,
-    //         validator(rule: FormItemRule, value: string) {
-    //             if (!value) {
-    //                 return new Error("需要年龄")
-    //             } else if (!/^\d*$/.test(value)) {
-    //                 return new Error("年龄应该为整数")
-    //             } else if (Number(value) < 18) {
-    //                 return new Error("年龄应该超过十八岁")
-    //             }
-    //             return true
-    //         },
-    //         trigger: ["input", "blur"],
-    //     },
-    // ]
 }
 onMounted(() => {
     computeRes()
@@ -97,6 +81,10 @@ onMounted(() => {
 
 const timeChange = (e: number | null) => {
     e && localStorage.setItem("localStartTime", String(e))
+    computeRes()
+}
+const workHourChange = (e: number | null) => {
+    e && localStorage.setItem("localWorkHour", String(e))
     computeRes()
 }
 const computeRes = () => {
