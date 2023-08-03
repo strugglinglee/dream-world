@@ -28,33 +28,16 @@
         <n-form-item v-if="model.validTime" label="今日出勤时间">
             {{ model.validTime }}
         </n-form-item>
-        <!-- <n-countdown
-            ref="countdown"
-            :duration="countdownInfo.duration"
-            :active="countdownInfo.active"
-        /> -->
-        <!-- <div style="display: flex; justify-content: flex-start">
-            <n-button
-                :disabled="!model.startTime"
-                round
-                type="primary"
-                @click="handleValidateButtonClick"
-            >
-                计算
-            </n-button>
-        </div> -->
     </n-form>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from "vue"
+import { onMounted, ref } from "vue"
 import dayjs from "dayjs"
 import {
     NForm,
     NFormItem,
     FormInst,
-    // FormItemRule,
-    useMessage,
     FormRules,
     NTimePicker,
     NInputNumber,
@@ -69,14 +52,17 @@ interface ModelType {
     waitTime: number | null
 }
 const formRef = ref<FormInst | null>(null)
-const message = useMessage()
 
 const localStartTime: string | null = localStorage.getItem("localStartTime")
+const localWorkHour: string | null = localStorage.getItem("localworkHour")
+
 const model = ref<ModelType>({
     startTime: localStartTime
-        ? Number(localStartTime)
+        ? dayjs(
+              dayjs().format("YYYY-MM-DD") + dayjs(Number(localStartTime)).format(" hh:mm:ss")
+          ).valueOf()
         : dayjs(dayjs().format("YYYY-MM-DD") + " 09:30:00").valueOf(),
-    workHour: 9,
+    workHour: localWorkHour ? Number(localWorkHour) : 9,
     leaveTime: null,
     waitTime: null,
     validTime: null,
