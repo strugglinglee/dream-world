@@ -55,9 +55,13 @@ const likeOption: MenuOption = {
     icon: renderIcon(GameController),
     children: [
         {
-            label: "可视化",
-            key: "visual",
+            label: "有趣的事",
+            key: "funny",
         },
+        // {
+        //     label: "可视化",
+        //     key: "visual",
+        // },
     ],
 }
 

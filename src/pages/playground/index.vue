@@ -2,7 +2,7 @@
     <n-layout class="playground" has-sider>
         <n-layout-sider
             bordered
-            class="menu"
+            class="sider"
             show-trigger
             collapse-mode="width"
             :collapsed-width="64"
@@ -11,6 +11,8 @@
             :inverted="inverted"
         >
             <n-menu
+                ref="menuInstRef"
+                v-model:value="selectedKey"
                 class="menu"
                 :inverted="inverted"
                 :collapsed-width="64"
@@ -26,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import { h, ref, Component } from "vue"
-import { useRouter } from "vue-router"
+import { h, ref, Component, onMounted } from "vue"
+import { useRouter, useRoute } from "vue-router"
 import { NIcon, NLayout, NLayoutSider, NMenu } from "naive-ui"
 import {
     BookOutline as BookIcon,
@@ -35,6 +37,7 @@ import {
     WineOutline as WineIcon,
 } from "@vicons/ionicons5"
 const router = useRouter()
+const route = useRoute()
 
 function renderIcon(icon: Component) {
     return () => h(NIcon, null, { default: () => h(icon) })
@@ -124,12 +127,27 @@ const inverted = ref(false)
 const handleMenuSelect = (type: string) => {
     router.push(`/playground/${type}`)
 }
+
+const menuInstRef = ref<any>(null)
+const selectedKey = ref<string>("")
+onMounted(() => {
+    selectActiveMenu()
+})
+const selectActiveMenu = () => {
+    const arrs = route.path.split("/")
+    const curType = arrs[arrs.length - 1]
+    selectedKey.value = curType
+    menuInstRef.value?.showOption(curType)
+}
 </script>
 
 <style class="scss" scoped>
 .playground {
     background-color: transparent;
     height: calc(100vh - 60px);
+}
+.sider {
+    background-color: transparent;
 }
 .menu {
     background-color: transparent;
