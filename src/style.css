@@ -16,34 +16,10 @@
 body {
     display: flex;
     margin: 0;
-    min-width: 320px;
     min-height: 100vh;
-    /* place-items: center; */
-    background: linear-gradient(limegreen, transparent),
-        linear-gradient(90deg, skyblue, transparent), linear-gradient(-90deg, coral, transparent);
-
-    background-blend-mode: screen;
 }
 
 #app {
-    box-sizing: border-box;
-    padding: 2rem;
     width: 100%;
-    max-width: 1280px;
     margin: auto;
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #ffffff;
-    }
-
-    a:hover {
-        color: #747bff;
-    }
-
-    button {
-        background-color: #f9f9f9;
-    }
 }
