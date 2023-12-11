@@ -16,6 +16,7 @@
                 :collapsed-width="64"
                 :collapsed-icon-size="22"
                 :options="menuOptions"
+                @update:value="handleMenuSelect"
             />
         </n-layout-sider>
         <n-layout class="main">
@@ -26,12 +27,14 @@
 
 <script setup lang="ts">
 import { h, ref, Component } from "vue"
+import { useRouter } from "vue-router"
 import { NIcon, NLayout, NLayoutSider, NMenu } from "naive-ui"
 import {
     BookOutline as BookIcon,
-    PersonOutline as PersonIcon,
+    // PersonOutline as PersonIcon,
     WineOutline as WineIcon,
 } from "@vicons/ionicons5"
+const router = useRouter()
 
 function renderIcon(icon: Component) {
     return () => h(NIcon, null, { default: () => h(icon) })
@@ -117,6 +120,10 @@ const menuOptions = [
     // },
 ]
 const inverted = ref(false)
+
+const handleMenuSelect = (type: string) => {
+    router.push(`/playground/${type}`)
+}
 </script>
 
 <style class="scss" scoped>
