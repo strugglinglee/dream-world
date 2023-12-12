@@ -2,7 +2,7 @@
     <div class="lottery">
         <H5Container>
             <div class="lottery-main">
-                <div class="lottery-main-inner">
+                <div ref="lotteryMainInnerRef" class="lottery-main-inner">
                     <div v-for="(item, index) in prizePools" :key="index" class="coupon">
                         {{ item.cost }}
                     </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
 import H5Container from "../components/h5Container.vue"
 const prizePools = [
     {
@@ -38,11 +38,15 @@ const animationTimingFunction = ref("linear")
 const animationIterationCount = ref("infinite")
 const animationPlayState = ref<"paused" | "running">("paused")
 const doLottery = () => {
-    animationPlayState.value = "running"
+    animationPlayState.value = "paused"
     setTimeout(() => {
-        animationPlayState.value = "paused"
-    }, 1000)
+        animationPlayState.value = "running"
+        animationDuration.value = "1000ms"
+    }, 100)
 }
+onMounted(() => {
+    animationPlayState.value = "running"
+})
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +55,7 @@ const doLottery = () => {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-540px);
     }
 }
 .lottery {
@@ -63,7 +67,7 @@ const doLottery = () => {
         border-radius: 16px;
         padding: 8px;
         border: 1px solid coral;
-        overflow-x: hidden;
+        overflow-x: auto;
         white-space: nowrap;
 
         &-inner {
