@@ -14,7 +14,7 @@ const goHome = () => {
         <n-message-provider>
             <n-layout class="page">
                 <n-layout-header class="header" bordered>
-                    <span class="title" @click="goHome">阿李贝斯’s dream world</span>
+                    <span class="header-title" @click="goHome">阿李贝斯’s dream world</span>
                 </n-layout-header>
                 <router-view></router-view>
             </n-layout>
@@ -39,7 +39,7 @@ const goHome = () => {
     display: flex;
     align-items: center;
 
-    .title {
+    &-title {
         cursor: pointer;
     }
 }

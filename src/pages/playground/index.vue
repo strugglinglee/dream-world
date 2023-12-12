@@ -34,7 +34,7 @@ import { NIcon, NLayout, NLayoutSider, NMenu } from "naive-ui"
 import {
     BookOutline as BookIcon,
     // PersonOutline as PersonIcon,
-    WineOutline as WineIcon,
+    // WineOutline as WineIcon,
 } from "@vicons/ionicons5"
 const router = useRouter()
 const route = useRoute()
@@ -55,17 +55,17 @@ const menuOptions = [
             },
         ],
     },
-    {
-        label: "暂无定性",
-        key: "pinball-1973",
-        icon: renderIcon(WineIcon),
-        children: [
-            {
-                label: "工时计算",
-                key: "attendance",
-            },
-        ],
-    },
+    // {
+    //     label: "暂无定性",
+    //     key: "pinball-1973",
+    //     icon: renderIcon(WineIcon),
+    //     children: [
+    //         {
+    //             label: "工时计算",
+    //             key: "attendance",
+    //         },
+    //     ],
+    // },
     // {
     //     label: "寻羊冒险记",
     //     key: "a-wild-sheep-chase",
@@ -125,7 +125,9 @@ const menuOptions = [
 const inverted = ref(false)
 
 const handleMenuSelect = (type: string) => {
-    router.push(`/playground/${type}`)
+    const curPath = `/playground/${type}`
+    if (route.path === curPath) return
+    router.push(curPath)
 }
 
 const menuInstRef = ref<any>(null)
@@ -134,14 +136,15 @@ onMounted(() => {
     selectActiveMenu()
 })
 const selectActiveMenu = () => {
-    const arrs = route.path.split("/")
-    const curType = arrs[arrs.length - 1]
+    const arrs = route.path.split("/").filter(i => i && i !== "playground")
+    const curType = arrs.length ? arrs[arrs.length - 1] : menuOptions[0].children[0].key
     selectedKey.value = curType
+    handleMenuSelect(curType)
     menuInstRef.value?.showOption(curType)
 }
 </script>
 
-<style class="scss" scoped>
+<style lang="scss" scoped>
 .playground {
     background-color: transparent;
     height: calc(100vh - 60px);
