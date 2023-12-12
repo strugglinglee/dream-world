@@ -2,16 +2,19 @@
     <div class="lottery">
         <H5Container>
             <div class="lottery-main">
-                <div v-for="(item, index) in prizePools" :key="index" class="coupon">
-                    {{ item.cost }}
+                <div class="lottery-main-inner">
+                    <div v-for="(item, index) in prizePools" :key="index" class="coupon">
+                        {{ item.cost }}
+                    </div>
                 </div>
             </div>
-            <button class="lottery-btn">点击抽奖</button>
+            <button class="lottery-btn" @click="doLottery">点击抽奖</button>
         </H5Container>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue"
 import H5Container from "../components/h5Container.vue"
 const prizePools = [
     {
@@ -30,9 +33,27 @@ const prizePools = [
         cost: "骨折",
     },
 ]
+const animationDuration = ref("5000ms")
+const animationTimingFunction = ref("linear")
+const animationIterationCount = ref("infinite")
+const animationPlayState = ref<"paused" | "running">("paused")
+const doLottery = () => {
+    animationPlayState.value = "running"
+    setTimeout(() => {
+        animationPlayState.value = "paused"
+    }, 1000)
+}
 </script>
 
 <style lang="scss" scoped>
+@keyframes ani {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 .lottery {
     display: flex;
     align-items: center;
@@ -42,8 +63,16 @@ const prizePools = [
         border-radius: 16px;
         padding: 8px;
         border: 1px solid coral;
-        overflow-x: auto;
+        overflow-x: hidden;
         white-space: nowrap;
+
+        &-inner {
+            animation-name: ani;
+            animation-timing-function: v-bind(animationTimingFunction);
+            animation-duration: v-bind(animationDuration);
+            animation-iteration-count: v-bind(animationIterationCount);
+            animation-play-state: v-bind(animationPlayState);
+        }
 
         &::-webkit-scrollbar {
             display: none;
