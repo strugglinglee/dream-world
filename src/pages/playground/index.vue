@@ -34,7 +34,7 @@ import { NIcon, NLayout, NLayoutSider, NMenu } from "naive-ui"
 import {
     BookOutline as BookIcon,
     // PersonOutline as PersonIcon,
-    // WineOutline as WineIcon,
+    WineOutline as WineIcon,
 } from "@vicons/ionicons5"
 const router = useRouter()
 const route = useRoute()
@@ -44,6 +44,17 @@ function renderIcon(icon: Component) {
 }
 
 const menuOptions = [
+    {
+        label: "暂无定性",
+        key: "pinball-1973",
+        icon: renderIcon(WineIcon),
+        children: [
+            {
+                label: "工时计算",
+                key: "attendance",
+            },
+        ],
+    },
     {
         label: "CSS玩具",
         key: "css",
@@ -55,17 +66,6 @@ const menuOptions = [
             },
         ],
     },
-    // {
-    //     label: "暂无定性",
-    //     key: "pinball-1973",
-    //     icon: renderIcon(WineIcon),
-    //     children: [
-    //         {
-    //             label: "工时计算",
-    //             key: "attendance",
-    //         },
-    //     ],
-    // },
     // {
     //     label: "寻羊冒险记",
     //     key: "a-wild-sheep-chase",
